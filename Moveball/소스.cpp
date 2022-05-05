@@ -9,6 +9,7 @@ void Input();
 void Process();
 void Draw();
 void MovePlayer(int XDirection, int YDirection);
+void MoveBall(int XDirection, int YDirection);
 
 bool IsGoal();
 
@@ -29,6 +30,8 @@ int Map[10][10] =
 
 int PlayerX = 1;
 int PlayerY = 1;
+int BallX = 1;
+int BallY = 2;
 
 bool bIsRunning = true;
 char Key;
@@ -111,6 +114,10 @@ void Draw()
 			{
 				cout << "P" << " ";
 			}
+			if (BallX == X && BallY == Y)
+			{
+				cout << "O" << " ";
+			}
 			else if (Map[Y][X] == 0)
 			{
 				cout << " " << " ";
@@ -138,6 +145,18 @@ void MovePlayer(int XDirection, int YDirection)
 	{
 		PlayerX = NewplayerX;
 		PlayerY = NewPlayerY;
+	}
+}
+
+void MoveBall(int XDirection, int YDirection)
+{
+	int NewBallX = BallX + XDirection;
+	int NewBallY = BallY + YDirection;
+
+	if (Map[NewBallY][NewBallX] == 0 || Map[NewBallY][NewBallX] == 9)
+	{
+		BallX = NewBallX;
+		BallY = NewBallY;
 	}
 }
 
